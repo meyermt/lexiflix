@@ -1,3 +1,13 @@
+User
+  name: text
+  email: text
+  password_digest: text
+  title: text
+  level: text
+  admin: text
+  created_at: text
+  updated_at: text
+
 # This file allows you to specify your domain model
 # in .yml format.  Use `rails db:migrate` to apply your
 # specification to your development database.

@@ -1,0 +1,44 @@
+<div class="page-header">
+  <h1>My Account</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <p>
+      <strong>Name:</strong> <%= @user.name %>
+    </p>
+
+    <p>
+      <strong>Email Address:</strong> <%= @user.email %>
+    </p>
+
+    <p>
+      <strong>Password:</strong> <%= @user.password %>
+    </p>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <h3>Order History</h3>
+
+    <% @orders.each do |order| %>
+
+      <div class="media img-responsive">
+        <div class="media-left">
+          <a href="/products/<%= order.product.id %>">
+            <%= image_tag order.product.photo_url, class: 'media-object' %>
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%= order.product.title %></h4>
+          <%= order.product.description %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
