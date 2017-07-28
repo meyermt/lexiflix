@@ -1,12 +1,17 @@
 User
+  username: text
   name: text
   email: text
   password_digest: text
-  title: text
-  level: text
-  admin: text
+  level: integer
+  admin: integer
   created_at: text
   updated_at: text
+
+Video
+  title: text
+  loc_id: text
+  icon_url: text
 
 # This file allows you to specify your domain model
 # in .yml format.  Use `rails db:migrate` to apply your

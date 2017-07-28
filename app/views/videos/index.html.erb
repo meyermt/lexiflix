@@ -1,0 +1,22 @@
+<div class="row">
+
+  <% @videos.each do |v| %>
+
+  <!-- Product Thumbnail -->
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+
+      <% icon_url = v.icon_url %>
+
+      <%= link_to image_tag(icon_url),
+                  "/videos/#{v.id}",
+                  alt: v.title, class: 'img-responsive' %>
+
+      <div class="caption">
+        <h4><%= link_to v.title, "/videos/#{v.id}"%></h4>
+      </div>
+    </div>
+  </div>
+
+  <% end %>
+</div>

@@ -1,10 +1,20 @@
 # Reset the 'users' table
 User.delete_all
 
-cookie_monster = User.create name: 'Cookie Monster', email: 'cookies@example.com', title: 'admin', level: nil, admin: nil, password: 'cookies'
-margaret = User.create name: 'Margaret Hamilton', email: 'margaret@example.com', title: 'student', level: '3', admin: 'Cookie Monster', password: 'apollo'
-alan = User.create name: 'Alan Turing', email: 'alan@example.com', title: 'student', level: '4', admin: 'Cookie Monster', password: 'enigma'
-grace = User.create name: 'Grace Hopper', email: 'grace@example.com', title: 'student', level: '4', admin: 'Cookie Monster', password: 'counterclockwise'
+cookie_monster = User.create username: 'cookiedude', name: 'Cookie Monster', email: 'cookies@example.com', level: 800, admin: nil, password: 'cookies'
+someone = User.create username: 'someone', name: 'Someone', email: 'someone@example.com', level: 800, admin: nil, password: 'something'
+
+u = User.find_by(name: 'Someone').id
+
+margaret = User.create username: 'hammy', name: 'Margaret Hamilton', email: 'someone@example.com', level: 300, admin: u, password: 'apollo'
+alan = User.create username: 'completemachine', name: 'Alan Turing', email: 'someone@example.com', level: 400, admin: u, password: 'enigma'
+grace = User.create username: 'pun123', name: 'Grace Hopper', email: 'someone@example.com', level: 500, admin: u, password: 'counterclockwise'
+
+Video.delete_all
+
+video1 = Video.create title: 'Invader in the Den', loc_id: 'WYcTAAAboC4', icon_url: 'https://i.ytimg.com/vi/WYcTAAAboC4/sddefault.jpg'
+video1 = Video.create title: 'Big Yawn', loc_id: 'ZH-1JdoTiKU', icon_url: 'https://i.ytimg.com/vi/ZH-1JdoTiKU/sddefault.jpg'
+video1 = Video.create title: 'What You Looking At?', loc_id: '5imNMZDGQ4Y', icon_url: 'https://i.ytimg.com/vi/5imNMZDGQ4Y/sddefault.jpg'
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).

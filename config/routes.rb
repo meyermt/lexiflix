@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/' => 'intro#index'
+  root 'intro#index'
 
   # Sessions
 
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
 
   resources :users
-  resources :movies
+  resources :videos
   resources :words
 
 end

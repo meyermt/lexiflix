@@ -16,11 +16,18 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "name"
     t.text "email"
     t.text "password_digest"
-    t.text "level"
+    t.integer "level"
     t.text "created_at"
     t.text "updated_at"
-    t.text "admin"
+    t.integer "admin"
+    t.text "username"
+  end
+
+  create_table "videos", force: :cascade do |t|
     t.text "title"
+    t.text "loc_id"
+    t.text "icon_url"
+    t.index ["loc_id"], name: "index_videos_on_loc_id"
   end
 
 end
