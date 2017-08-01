@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "updated_at"
     t.integer "admin"
     t.text "username"
+    t.boolean "otp", default: false
   end
 
   create_table "videos", force: :cascade do |t|

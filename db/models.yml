@@ -1,10 +1,11 @@
 User
-  username: text
   name: text
+  username: text
   email: text
   password_digest: text
   level: integer
   admin: integer
+  otp: boolean
   created_at: text
   updated_at: text
 

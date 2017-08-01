@@ -13,6 +13,7 @@ class User < ApplicationRecord
   def check_username_unique
     u = User.find_by(username: username)
     if u != nil
+      print("username already being used, adding an error")
       errors.add(:username, "is already being used, please choose another one")
     end
   end
@@ -21,6 +22,7 @@ class User < ApplicationRecord
     u = User.find_by(email: email)
     if u != nil
       if admin != u.id
+        print("admin id supplied not same as user. admin is #{admin} and user id is #{u.id}")
         errors.add(:email, "is already being used, please choose another email address.")
       end
     end
