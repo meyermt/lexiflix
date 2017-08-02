@@ -1,5 +1,6 @@
+<div class="container">
 <div class="page-header">
-  <h1>Sign In</h1>
+  <h1 class="network-name">Sign In</h1>
 </div>
 
 <div class="row">
@@ -8,7 +9,7 @@
   <%= form_tag("/sessions", method: 'post') do  %>
 
     <div class="form-group">
-      <%= label_tag :username, "Username" %>
+      <%= label_tag :username, "Username", class: 'intro-text' %>
       <%= text_field_tag :username, "", autofocus: true, class: 'form-control' %>
     </div>
 
@@ -44,4 +45,5 @@
       </tbody>
     </table>
   </div>
+</div>
 </div>

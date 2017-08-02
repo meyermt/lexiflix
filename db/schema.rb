@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "title"
     t.text "loc_id"
     t.text "icon_url"
+    t.text "director"
+    t.text "description"
     t.index ["loc_id"], name: "index_videos_on_loc_id"
   end
 

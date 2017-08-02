@@ -1,5 +1,6 @@
-<div class="page-header">
-  <h1>My Account</h1>
+<div class="container">
+<div class="page-header network-name">
+  <h1><%= @user.name %>'s Account</h1>
 </div>
 
 <div class="row">
@@ -10,35 +11,62 @@
     </p>
 
     <p>
+      <strong>Username:</strong> <%= @user.username %>
+    </p>
+
+    <p>
       <strong>Email Address:</strong> <%= @user.email %>
     </p>
 
     <p>
-      <strong>Password:</strong> <%= @user.password %>
+      <strong>Lexical Reading Level:</strong> <%= @user.level %>
     </p>
 
   </div>
 </div>
 
 <div class="row">
+  <div class="col-sm-2">
+  <%= form_tag("/users/#{@user.id}/edit", method: 'get') do  %>
+    <%= submit_tag "Edit My Information", class: 'btn btn-primary btn-lg'%>
+  <% end %>
+</div>
+<div class="col-sm-2">
+  <%= form_tag("/users/#{@user.id}", method: 'delete') do  %>
+    <%= submit_tag "Delete My Account", class: 'btn btn-primary btn-lg'%>
+  <% end %>
+</div>
+</div>
+
+<div class="row">
   <div class="col-sm-12">
 
-    <h3>Order History</h3>
+    <h3>Student Accounts</h3>
 
-    <% @orders.each do |order| %>
+    <% User.where(admin: @user.id).each do | student | %>
 
-      <div class="media img-responsive">
-        <div class="media-left">
-          <a href="/products/<%= order.product.id %>">
-            <%= image_tag order.product.photo_url, class: 'media-object' %>
-          </a>
-        </div>
-        <div class="media-body">
-          <h4 class="media-heading"><%= order.product.title %></h4>
-          <%= order.product.description %>
-        </div>
+    <div class="row">
+    <div class="col-sm-12">
+
+      <p>
+        <strong>Name:</strong> <%= student.name %>
+      </p>
+
+      <p>
+        <strong>Username:</strong> <%= student.username %>
+      </p>
+
+      <p>
+        <strong>Lexical Reading Level:</strong> <%= student.level %>
+      </p>
+
+      <%= form_tag("/users/#{student.id}/edit", method: 'get') do  %>
+        <%= submit_tag "Update Student Information", class: 'btn btn-success btn-md'%>
+      <% end %>
       </div>
-
+    </div>
+    <hr class="section-heading-spacer">
     <% end %>
   </div>
+</div>
 </div>

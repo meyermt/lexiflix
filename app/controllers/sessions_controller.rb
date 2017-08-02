@@ -23,10 +23,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def edit
-    u = User.find_by(username: params['username'])
-  end
-
   def destroy
     reset_session
     redirect_to "/", notice: "See ya!"

@@ -13,6 +13,8 @@ Video
   title: text
   loc_id: text
   icon_url: text
+  director: text
+  description: text
 
 # This file allows you to specify your domain model
 # in .yml format.  Use `rails db:migrate` to apply your
