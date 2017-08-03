@@ -11,6 +11,10 @@ The goal of this application is to provide video content with subtitles (subtitl
 
 A typical use case would go as follows: a parent or teacher signs up for an account and adds one to many student user accounts that they are "administrators" for. They set an initial lexical reading level for each student. After completion of sign up, students can then login and view subtitled content at their reading level (the ideal content is stuff like anime, cartoons, and anything else that would/could be viewed as close-captioned/subtitled). Parents/teachers have the ability to toggle a quiz element that will be displayed after students watch videos, in order to gauge if the reading level is appropriate (i.e., did they understand the content and can they be moved up a level). Parents/teachers can then view data for each student on an administrative dashboard.
 
+## Current Known Issues
+
+* Main issues right now is just that student users are sort of stuck at login. The intent is that they are given a one time password that they then need to change on first login. The only part of this functionality present at the moment is the redirect to have them edit their information. The actual update is not working. Thus, they can't really browse, only admins and owners can.
+
 ## User Stories
 
 As a note, "admins" are considered parents or teachers. Owners are more like system administrators. And then users are really anyone who is watching the content.
