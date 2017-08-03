@@ -18,11 +18,33 @@ class VideosController < ApplicationController
     @video = Video.find_by(id: params["id"])
   end
 
+  def new
+    if @user.owner != true
+      redirect_to root_url, notice: "You need to login as an owner first."
+    end
+    @video = Video.new
+    render 'new'
+  end
+
+  def create
+    if @user.owner != true
+      redirect_to root_url, notice: "You need to login as an owner first."
+    end
+    @video = Video.new
+    @video.title = params["title"]
+    @video.description = params["description"]
+    @video.director = params["director"]
+    @video.loc_id = params["loc_id"]
+    @video.icon_url = params["icon_url"]
+    @video.script_root_url = params["script_root_url"]
+    if @video.save
+      redirect_to "/videos", notice: 'Product successfully created.'
+    else
+      render "new"
+    end
+  end
+
   def edit
-    # @user = User.find_by(id: session[:user_id])
-    # if @user.blank? || @user.owner != true
-    #   redirect_to root_url, notice: "You need to login as an owner first."
-    # end
     if @user.owner != true
       redirect_to root_url, notice: "You need to login as an owner first."
     end

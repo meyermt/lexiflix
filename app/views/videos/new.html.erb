@@ -1,6 +1,6 @@
 <div class="container">
 <div class="page-header">
-  <h1 class="network-name">Change Video Information</h1>
+  <h1 class="network-name">Add a New Video</h1>
 </div>
 
 <% if  @video.errors.full_messages.any? %>
@@ -14,7 +14,7 @@
 <div class="row">
   <div class="col-sm-4">
 
-  <%= form_tag("/videos/#{@video.id}", method: 'patch') do  %>
+  <%= form_tag("/videos", method: 'post') do  %>
 
     <div class="form-group">
       <%= label_tag :title, "Title" %>
@@ -46,9 +46,9 @@
       <%= text_field_tag :script_root_url, @video.script_root_url, class: 'form-control' %>
     </div>
 
-    <%= submit_tag "Update Information", class: 'btn btn-success btn-lg'%>
+    <%= submit_tag "Add Video", class: 'btn btn-success btn-lg'%>
     or
-    <%= link_to "Cancel", "videos" %>
+    <%= link_to "Cancel", "/videos" %>
 
   <% end %>
 
