@@ -26,6 +26,26 @@
       <%= text_field_tag :description, @video.description, class: 'form-control' %>
     </div>
 
+    <div class="form-group">
+      <%= label_tag :director, "Director" %>
+      <%= text_field_tag :director, @video.director, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :loc_id, "Video Location ID" %>
+      <%= text_field_tag :loc_id, @video.loc_id, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :icon_url, "Icon URL" %>
+      <%= text_field_tag :icon_url, @video.icon_url, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :script_root_url, "Script Root URL" %>
+      <%= text_field_tag :script_root_url, @video.script_root_url, class: 'form-control' %>
+    </div>
+
     <%= submit_tag "Update Information", class: 'btn btn-success btn-lg'%>
     or
     <%= link_to "Cancel", root_url %>

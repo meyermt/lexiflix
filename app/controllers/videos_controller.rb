@@ -37,6 +37,10 @@ class VideosController < ApplicationController
     @video = Video.find_by(id: params["id"])
     @video.title = params["title"]
     @video.description = params["description"]
+    @video.director = params["director"]
+    @video.loc_id = params["loc_id"]
+    @video.icon_url = params["icon_url"]
+    @video.script_root_url = params["script_root_url"]
     if @video.save
       redirect_to '/videos', notice: 'Video details have been updated'
     else
