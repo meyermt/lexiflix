@@ -18,9 +18,7 @@ class UsersController < ApplicationController
       if params['student_count'].to_i > 0
         could_save = true
         params['student_count'].to_i.times do |i|
-          print("iterating through students for user: " + String(@user.id))
           s_user = User.new
-          print("you are on index #{i}")
           s_user.name = params['student_name_' + String(i)]
           s_user.username = params['student_username_' + String(i)]
           s_user.email = params['email']
@@ -83,10 +81,12 @@ class UsersController < ApplicationController
       @user.level = params['level'].to_i
     elsif params['is_student']
       @user.username = params['username']
+      @user.level = params['password']
     else
       @user.username = params['username']
       @user.level = params['level'].to_i
       @user.email = params['email']
+      @user.level = params['password']
     end
     @user.name = params['name']
     if @user.save

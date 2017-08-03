@@ -46,12 +46,12 @@
       <% if @user.owner == true %>
         <li>
           <%= form_tag("/videos/#{@video.id}/edit", method: 'get') do  %>
-            <%= submit_tag "Edit Video Details", class: 'btn btn-primary btn-lg'%>
+            <%= submit_tag "Edit Video Details", class: 'btn btn-info btn-lg'%>
           <% end %>
         </li>
         <li>
           <%= form_tag("/videos/#{@video.id}", method: 'delete') do  %>
-            <%= submit_tag "Delete This Video", class: 'btn btn-primary btn-lg'%>
+            <%= submit_tag "Delete This Video", class: 'btn btn-danger btn-lg'%>
           <% end %>
         </li>
       <% end %>
