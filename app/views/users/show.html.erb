@@ -1,6 +1,6 @@
 <div class="container">
-<div class="page-header network-name">
-  <h1><%= @user.name %>'s Account</h1>
+<div class="page-header">
+  <h1 class="network-name"><%= @user.name %>'s Account</h1>
 </div>
 
 <div class="row">
@@ -28,7 +28,7 @@
 <div class="row">
   <div class="col-sm-2">
   <%= form_tag("/users/#{@user.id}/edit", method: 'get') do  %>
-    <%= submit_tag "Edit My Information", class: 'btn btn-primary btn-lg'%>
+    <%= submit_tag "Edit My Account", class: 'btn btn-primary btn-lg'%>
   <% end %>
 </div>
 <div class="col-sm-2">
@@ -42,27 +42,23 @@
   <div class="col-sm-12">
 
     <h3>Student Accounts</h3>
+    <hr class="section-heading-spacer">
 
     <% User.where(admin: @user.id).each do | student | %>
 
     <div class="row">
-    <div class="col-sm-12">
+      <div class="col-sm-12">
+        <p>
+          <strong>Name:</strong> <%= student.name %>
+        </p>
 
-      <p>
-        <strong>Name:</strong> <%= student.name %>
-      </p>
+        <p>
+          <strong>Username:</strong> <%= student.username %>
+        </p>
 
-      <p>
-        <strong>Username:</strong> <%= student.username %>
-      </p>
-
-      <p>
-        <strong>Lexical Reading Level:</strong> <%= student.level %>
-      </p>
-
-      <%= form_tag("/users/#{student.id}/edit", method: 'get') do  %>
-        <%= submit_tag "Update Student Information", class: 'btn btn-success btn-md'%>
-      <% end %>
+        <p>
+          <strong>Lexical Reading Level:</strong> <%= student.level %>
+        </p>
       </div>
     </div>
     <hr class="section-heading-spacer">

@@ -29,7 +29,7 @@ class UsersController < ApplicationController
           s_user.admin = @user.id
           if !s_user.save
             could_save = false
-            print("unable to save a studen user")
+            print("unable to save a student user")
           else
             @s_users << s_user
           end
@@ -56,6 +56,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find_by(id: session[:user_id])
+    if @user.blank?
+      redirect_to root_url, notice: "You need to login first."
+    end
+    @user.name = params['name']
+    @user.username = params['username']
+    if @user.save
+      redirect_to root_url, notice: "Thanks for your order! We will ship it when we feel like it."
+    else
+      render 'edit'
+    end
+  end
+
   def show
     @user = User.find_by(id: session[:user_id])
     if @user.blank?
@@ -63,5 +77,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_password
+    @user = User.find(@current_user)
+    current_password = params[:user][:current_password]
+    user = User.authenticate(@user.email, current_password)
+    if @user && user
+      # @user.update.password = params[:new_password]
+      # new_password = params[:password]
+      # @user.update(new_password)
+      User.update(@user, change_password_params)
+      @user.save
+      flash[:success] = "Password successfully changed!"
+      redirect_to user_path(@current_user)
+    else
+      flash[:danger] = "Your old password was incorrect. Please try again."
+      redirect_to user_path(@current_user)
+    end
+  end
 
 end

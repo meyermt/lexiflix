@@ -3,6 +3,14 @@
   <h1 class="network-name">Sign Up</h1>
 </div>
 
+<% if  @user.errors.full_messages.any? %>
+  <ul class="text-danger">
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div class="row">
   <div class="col-sm-4">
 

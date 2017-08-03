@@ -16,10 +16,15 @@
             <ul class="nav navbar-nav navbar-right">
               <% if session["user_id"].present? %>
               <% user = User.find_by(id: session["user_id"]) %>
-              <li><%= link_to "Browse Videos", '/videos', class: "page-scroll" %></li>
-              <li><%= link_to "My Account", "/users/#{user.id}", class: "page-scroll" %></li>
-              <li><%= link_to "Sign Out", '/logout', method: :delete %></li>
+                <% if user.owner == true %>
+                  <li><%= link_to "Browse or Manage Videos", '/videos', class: "page-scroll" %></li>
+                <% else %>
+                  <li><%= link_to "Browse Videos", '/videos', class: "page-scroll" %></li>
+                <% end %>
+                <li><%= link_to "My Account", "/users/#{user.id}", class: "page-scroll" %></li>
+                <li><%= link_to "Sign Out", '/logout', method: :delete %></li>
               <% else %>
+              <li><%= link_to "Sign Up", "/users/new" %></li>
                 <li><%= link_to 'Sign In', "/sessions/new" %></li>
               <% end %>
                 <li>

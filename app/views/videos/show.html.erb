@@ -41,14 +41,28 @@
 
 <div class="container">
   <div class="page-header">
-    <h1><%= @video.title %></h1>
+    <h1 class="network-name"><%= @video.title %></h1>
   </div>
-<div class="row video-container">
-  <div id="player"></div>
+    <div class="row">
+      <div class="col-sm-2">
+      <%= form_tag("/videos/#{@video.id}/edit", method: 'get') do  %>
+        <%= submit_tag "Edit Video Details", class: 'btn btn-primary btn-lg'%>
+      <% end %>
+      </div>
+      <div class="col-sm-2">
+        <%= form_tag("/videos/#{@video.id}", method: 'delete') do  %>
+          <%= submit_tag "Delete This Video", class: 'btn btn-primary btn-lg'%>
+        <% end %>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="player" class="video-container"></div>
+    </div>
   <!-- below is beginning code for the ability to watch videos at various lexical levels -->
   <!-- <h4><a onclick="returnTime()" href="#">See the video time</h4>
    <div class="time-display">
     <h4 class="video-time"></h4>
   </div> -->
-</div>
+  </div>
 </div>

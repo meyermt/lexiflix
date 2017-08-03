@@ -1,6 +1,18 @@
 <div class="container">
   <div class="page-header">
-    <h1>Browse Videos</h1>
+    <ul class="list-inline">
+      <li><h1 class="network-name">Browse Videos</h1></li>
+      <% if @user.owner == true %>
+      <li>
+        <%= form_tag("/videos/new", method: 'get') do  %>
+          <%= submit_tag "Add Videos", class: 'btn btn-success btn-lg'%>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="row">
+
   </div>
 <div class="row">
 
@@ -18,6 +30,11 @@
 
       <div class="caption">
         <h4><%= link_to v.title, "/videos/#{v.id}"%></h4>
+        <p><%= v.description %></p>
+        <p><u>Director</u>: <%= v.director %></p>
+        <% if @user.owner == true %>
+          <p><%= link_to "Edit", "/videos/#{v.id}/edit"%></p>
+        <% end %>
       </div>
     </div>
   </div>

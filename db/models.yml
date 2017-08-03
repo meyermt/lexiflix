@@ -2,6 +2,7 @@ User
   name: text
   username: text
   email: text
+  owner: boolean
   password_digest: text
   level: integer
   admin: integer

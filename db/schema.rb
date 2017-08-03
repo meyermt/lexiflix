@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "admin"
     t.text "username"
     t.boolean "otp", default: false
+    t.boolean "owner", default: false
   end
 
   create_table "videos", force: :cascade do |t|
