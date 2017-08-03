@@ -1,9 +1,10 @@
 class User < ApplicationRecord
 
   validates_uniqueness_of :username, presence: true
+  validates :password, length: { in: 6..20 }, on: create
   validates :name, presence: true
   validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
-  validates :level, presence: true
+  validates :level, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 2000 }
 
   before_validation :check_email_unique
 

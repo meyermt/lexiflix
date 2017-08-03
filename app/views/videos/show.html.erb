@@ -41,20 +41,22 @@
 
 <div class="container">
   <div class="page-header">
-    <h1 class="network-name"><%= @video.title %></h1>
-  </div>
-    <div class="row">
-      <div class="col-sm-2">
-      <%= form_tag("/videos/#{@video.id}/edit", method: 'get') do  %>
-        <%= submit_tag "Edit Video Details", class: 'btn btn-primary btn-lg'%>
+    <ul class="list-inline">
+      <li><h1 class="network-name"><%= @video.title %></h1></li>
+      <% if @user.owner == true %>
+        <li>
+          <%= form_tag("/videos/#{@video.id}/edit", method: 'get') do  %>
+            <%= submit_tag "Edit Video Details", class: 'btn btn-primary btn-lg'%>
+          <% end %>
+        </li>
+        <li>
+          <%= form_tag("/videos/#{@video.id}", method: 'delete') do  %>
+            <%= submit_tag "Delete This Video", class: 'btn btn-primary btn-lg'%>
+          <% end %>
+        </li>
       <% end %>
-      </div>
-      <div class="col-sm-2">
-        <%= form_tag("/videos/#{@video.id}", method: 'delete') do  %>
-          <%= submit_tag "Delete This Video", class: 'btn btn-primary btn-lg'%>
-        <% end %>
-      </div>
-    </div>
+    </ul>
+  </div>
   <div class="row">
     <div class="col-lg-12">
       <div id="player" class="video-container"></div>

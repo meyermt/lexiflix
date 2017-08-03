@@ -1,7 +1,21 @@
 <div class="container">
-<div class="page-header">
-  <h1 class="network-name"><%= @user.name %>'s Account</h1>
-</div>
+  <div class="page-header">
+    <ul class="list-inline">
+      <li><h1 class="network-name"><%= @user.name %>'s Account</h1></li>
+        <li>
+          <%= form_tag("/users/#{@user.id}/edit", method: 'get') do  %>
+            <%= submit_tag "Edit My Account", class: 'btn btn-info btn-lg'%>
+          <% end %>
+        </li>
+        <% if @user.admin == nil %>
+          <li>
+            <%= form_tag("/users/#{@user.id}", method: 'delete') do  %>
+              <%= submit_tag "Delete My Account", class: 'btn btn-danger btn-lg'%>
+            <% end %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
 
 <div class="row">
   <div class="col-sm-12">
@@ -25,44 +39,48 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-2">
-  <%= form_tag("/users/#{@user.id}/edit", method: 'get') do  %>
-    <%= submit_tag "Edit My Account", class: 'btn btn-primary btn-lg'%>
-  <% end %>
-</div>
-<div class="col-sm-2">
-  <%= form_tag("/users/#{@user.id}", method: 'delete') do  %>
-    <%= submit_tag "Delete My Account", class: 'btn btn-primary btn-lg'%>
-  <% end %>
-</div>
-</div>
+<% if @user.admin == nil %>
+  <div class="row">
+    <div class="col-sm-12">
 
-<div class="row">
-  <div class="col-sm-12">
+      <h3>Student Accounts</h3>
+      <hr class="section-heading-spacer">
 
-    <h3>Student Accounts</h3>
-    <hr class="section-heading-spacer">
+      <% User.where(admin: @user.id).each do | student | %>
 
-    <% User.where(admin: @user.id).each do | student | %>
+      <div class="row">
+        <div class="col-sm-12">
+          <p>
+            <strong>Name:</strong> <%= student.name %>
+          </p>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <p>
-          <strong>Name:</strong> <%= student.name %>
-        </p>
+          <p>
+            <strong>Username:</strong> <%= student.username %>
+          </p>
 
-        <p>
-          <strong>Username:</strong> <%= student.username %>
-        </p>
+          <p>
+            <strong>Lexical Reading Level:</strong> <%= student.level %>
+          </p>
 
-        <p>
-          <strong>Lexical Reading Level:</strong> <%= student.level %>
-        </p>
+          <ul class="list-inline">
+            <li>
+              <%= form_tag("/users/#{@user.id}/edit", method: 'get') do  %>
+                <%= hidden_field_tag(:student_id, student.id) %>
+                <%= submit_tag "Edit This Student Account", class: 'btn btn-info'%>
+              <% end %>
+            </li>
+            <li>
+              <%= form_tag("/users/#{@user.id}", method: 'delete') do  %>
+                <%= hidden_field_tag(:student_id, student.id) %>
+                <%= submit_tag "Delete This Student Account", class: 'btn btn-danger'%>
+              <% end %>
+            </li>
+          </ul>
+        </div>
       </div>
+      <hr class="section-heading-spacer">
+      <% end %>
     </div>
-    <hr class="section-heading-spacer">
-    <% end %>
   </div>
-</div>
+<% end %>
 </div>

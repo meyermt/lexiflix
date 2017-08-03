@@ -19,6 +19,7 @@
                 <% if !user.blank? %>
                   <% if user.owner == true %>
                     <li><%= link_to "Browse or Manage Videos", '/videos', class: "page-scroll" %></li>
+                    <li><%= link_to "Browse Users", '/users', class: "page-scroll" %></li>
                   <% else %>
                     <li><%= link_to "Browse Videos", '/videos', class: "page-scroll" %></li>
                   <% end %>

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def new
+    @user = User.new
   end
 
   def create
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
           s_user.name = params['student_name_' + String(i)]
           s_user.username = params['student_username_' + String(i)]
           s_user.email = params['email']
-          s_user.password = SecureRandom.uuid #TODO: gotta substring this
+          s_user.password = SecureRandom.uuid[0...8]
           s_user.level = params['student_level_' + String(i)].to_i
           s_user.otp = true
           s_user.admin = @user.id
@@ -31,12 +32,16 @@ class UsersController < ApplicationController
             could_save = false
             print("unable to save a student user")
           else
+            # TODO: This is pretty bad for any sort of security. Should be removed after mailer works
+            # Until mailer starts working, will need to do this and view console log to test student users
+            print("Student #{s_user.username} has password of #{s_user.password}")
             @s_users << s_user
           end
         end
       end
       if could_save
-        UserMailer.welcome_email(@user, @s_users).deliver_now
+        # Still working on this
+        # UserMailer.welcome_email(@user, @s_users).deliver_now
         redirect_to "/sessions/new", notice: "Thanks for signing up!"
       else
         redirect_to "/sessions/new", notice: "One or more of your students were not able to be added. Please visit your user screen to add them."
@@ -47,12 +52,24 @@ class UsersController < ApplicationController
   end
 
   def index
+    @user = User.find_by(id: session[:user_id])
+    if @user.blank? && @user.owner != true
+      redirect_to root_url, notice: "You need to be an owner to view users."
+    end
+    @users = User.all
   end
 
   def edit
     @user = User.find_by(id: session[:user_id])
     if @user.blank?
       redirect_to root_url, notice: "You need to login first."
+    end
+    # are we acting on a student's behalf
+    if params['student_id'] != nil
+      @student_delegate = true
+      @user = User.find_by(id: params['student_id'])
+    else
+      @student_delegate = false
     end
   end
 
@@ -61,11 +78,26 @@ class UsersController < ApplicationController
     if @user.blank?
       redirect_to root_url, notice: "You need to login first."
     end
-    @user.name = params['name']
-    @user.username = params['username']
-    if @user.save
-      redirect_to root_url, notice: "Thanks for your order! We will ship it when we feel like it."
+    if params['student_id'] != nil
+      @user = User.find_by(id: params['student_id'])
+      @user.level = params['level'].to_i
+      @user.update(level: params['level'].to_i)
+    elsif params['is_student']
+      @user.username = params['username']
     else
+      @user.username = params['username']
+      @user.level = params['level'].to_i
+      @user.email = params['email']
+    end
+    @user.name = params['name']
+    if @user.save
+      @user = User.find_by(id: session[:user_id])
+      redirect_to "/users/#{@user.id}", notice: "Thanks for your order! We will ship it when we feel like it."
+    elsif params['student_id'] != nil
+      @student_delegate = true
+      render 'edit'
+    else
+      @student_delegate = false
       render 'edit'
     end
   end
@@ -77,22 +109,42 @@ class UsersController < ApplicationController
     end
   end
 
-  def change_password
-    @user = User.find(@current_user)
-    current_password = params[:user][:current_password]
-    user = User.authenticate(@user.email, current_password)
-    if @user && user
-      # @user.update.password = params[:new_password]
-      # new_password = params[:password]
-      # @user.update(new_password)
-      User.update(@user, change_password_params)
-      @user.save
-      flash[:success] = "Password successfully changed!"
-      redirect_to user_path(@current_user)
+  def destroy
+    @user = User.find_by(id: session[:user_id])
+    if @user.blank? && @user.admin == nil
+      redirect_to root_url, notice: "You are not authorized to view that page."
+    end
+    if is_student_action
+
     else
-      flash[:danger] = "Your old password was incorrect. Please try again."
-      redirect_to user_path(@current_user)
+
     end
   end
+
+  def is_student_action(user)
+    if params["student"]
+      return true
+    else
+      return false
+    end
+  end
+
+  # def change_password
+  #   @user = User.find(@current_user)
+  #   current_password = params[:user][:current_password]
+  #   user = User.authenticate(@user.email, current_password)
+  #   if @user && user
+  #     # @user.update.password = params[:new_password]
+  #     # new_password = params[:password]
+  #     # @user.update(new_password)
+  #     User.update(@user, change_password_params)
+  #     @user.save
+  #     flash[:success] = "Password successfully changed!"
+  #     redirect_to user_path(@current_user)
+  #   else
+  #     flash[:danger] = "Your old password was incorrect. Please try again."
+  #     redirect_to user_path(@current_user)
+  #   end
+  # end
 
 end
