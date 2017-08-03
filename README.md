@@ -15,6 +15,8 @@ A typical use case would go as follows: a parent or teacher signs up for an acco
 
 As a note, "admins" are considered parents or teachers. Owners are more like system administrators. And then users are really anyone who is watching the content.
 
+**Checked box denotes completed story**
+
 - [x] As an admin*, I want to sign up for service
 - [x] As an admin, I would like to add student users to my account at sign up time.
 - [] As an admin, I would like to add student users to my account after sign up time.
