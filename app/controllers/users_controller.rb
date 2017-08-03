@@ -81,7 +81,6 @@ class UsersController < ApplicationController
     if params['student_id'] != nil
       @user = User.find_by(id: params['student_id'])
       @user.level = params['level'].to_i
-      @user.update(level: params['level'].to_i)
     elsif params['is_student']
       @user.username = params['username']
     else
@@ -92,7 +91,7 @@ class UsersController < ApplicationController
     @user.name = params['name']
     if @user.save
       @user = User.find_by(id: session[:user_id])
-      redirect_to "/users/#{@user.id}", notice: "Thanks for your order! We will ship it when we feel like it."
+      redirect_to "/users/#{@user.id}", notice: "Profile successfully updated."
     elsif params['student_id'] != nil
       @student_delegate = true
       render 'edit'
@@ -114,10 +113,15 @@ class UsersController < ApplicationController
     if @user.blank? && @user.admin == nil
       redirect_to root_url, notice: "You are not authorized to view that page."
     end
-    if is_student_action
-
+    if params['student_id'] != nil
+      @user = User.find_by(id: params['student_id'])
+      @user.destroy
+      @user = User.find_by(id: session[:user_id])
+      redirect_to "/users/#{@user.id}", notice: "Student profile has been removed."
+    elsif params['is_student']
+      redirect_to root_url, notice: "You cannot delete this account."
     else
-
+      redirect_to root_url, notice: "Sorry to see you go, but thanks for watching with us!"
     end
   end
 
