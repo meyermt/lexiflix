@@ -15,23 +15,23 @@ A typical use case would go as follows: a parent or teacher signs up for an acco
 
 As a note, "admins" are considered parents or teachers. Owners are more like system administrators. And then users are really anyone who is watching the content.
 
-[x] As an admin*, I want to sign up for service
-[x] As an admin, I would like to add student users to my account at sign up time.
-[] As an admin, I would like to add student users to my account after sign up time.
-[x] As an admin, I would like to edit certain student account information.
-[x] As an admin, I would like to delete my account.
-[x] As an admin, I would like to delete student accounts.
-[x] As an owner, I would like to add new videos.
-[x] As an owner, I would like to edit video information.
-[x] As an owner, I would like to delete videos.
-[] As an admin, I would like to purchase the service with a credit card
-[] As an admin or a user, I would like to view content at my reading level.
-[] As an admin, I would like to know if my student(s) are understanding the content provided.
-[] As an admin, I would like to view information about the content my students are watching that will inform my decision on their reading level.
-[x] As any user, I would like to view videos.
-[] As a user, I would like to get to choose my password after an admin signs me up
-[] As a user, I would like to rate the content I watch
+- [x] As an admin*, I want to sign up for service
+- [x] As an admin, I would like to add student users to my account at sign up time.
+- [] As an admin, I would like to add student users to my account after sign up time.
+- [x] As an admin, I would like to edit certain student account information.
+- [x] As an admin, I would like to delete my account.
+- [x] As an admin, I would like to delete student accounts.
+- [x] As an owner, I would like to add new videos.
+- [x] As an owner, I would like to edit video information.
+- [x] As an owner, I would like to delete videos.
+- [] As an admin, I would like to purchase the service with a credit card
+- [] As an admin or a user, I would like to view content at my reading level.
+- [] As an admin, I would like to know if my student(s) are understanding the content provided.
+- [] As an admin, I would like to view information about the content my students are watching that will inform my decision on their reading level.
+- [x] As any user, I would like to view videos.
+- [] As a user, I would like to get to choose my password after an admin signs me up
+- [] As a user, I would like to rate the content I watch
 
 ** Nice to haves
-[] As a user, I would like to click on a subtitled word to see its definition
-[] As a user, I would like to first be presented content that aligns to the genre of content I have chosen before.
+- [] As a user, I would like to click on a subtitled word to see its definition
+- [] As a user, I would like to first be presented content that aligns to the genre of content I have chosen before.
