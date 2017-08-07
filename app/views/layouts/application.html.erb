@@ -19,6 +19,17 @@
 
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <%= render 'layouts/navbar' %>
+      <% if flash[:notice].present? %>
+        <h4>something here</h4>
+        <div class="alert alert-info">
+          <p><strong><%= flash[:notice] %></strong></p>
+        </div>
+      <% end %>
+      <% if flash[:alert].present? %>
+        <div class="alert alert-danger">
+          <p><strong><%= flash[:alert] %></strong></p>
+        </div>
+      <% end %>
       <%= yield %>
     <%= render 'layouts/footer' %>
     <%= javascript_include_tag 'js/jquery-3.2.1.min.js' %>

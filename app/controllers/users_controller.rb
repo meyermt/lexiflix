@@ -65,6 +65,8 @@ class UsersController < ApplicationController
     if @user.blank?
       redirect_to root_url, notice: "You need to login first."
     end
+    params[:user].delete(:password) if params[:user][:password].blank?
+
     # are we acting on a student's behalf
     if params['student_id'] != nil
       @student_delegate = true

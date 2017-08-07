@@ -18,9 +18,11 @@
       <%= password_field_tag :password, "", class: 'form-control' %>
     </div>
 
-    <%= submit_tag "Login", class: 'btn btn-success btn-lg'%>
+    <%= submit_tag "Login", class: 'btn btn-info btn-lg'%>
     or
     <%= link_to "Cancel", root_url %>
+    or
+    <%= link_to "Forgot Your Password?", "/resets/new" %>
 
   <% end %>
 

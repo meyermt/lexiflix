@@ -1,0 +1,32 @@
+<div class="container">
+<div class="page-header">
+  <h1 class="network-name">Send New Password</h1>
+  <h4>Note that student resets will go to their administrators</h4>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+
+  <%= form_tag("/resets", method: 'post') do  %>
+
+    <div class="form-group reset_form_admin">
+      <%= label_tag :username, "Username:" %>
+      <%= text_field_tag :username, "", autofocus: true, class: 'form-control' %>
+    </div>
+
+    <p>For administrators, if you don't remember your username, please enter your email</p>
+
+    <div class="form-group reset_form_admin">
+      <%= label_tag :email, "Email:" %>
+      <%= text_field_tag :email, "", autofocus: true, class: 'form-control' %>
+    </div>
+
+    <%= submit_tag "Send Reset Password", class: 'btn btn-info btn-lg network-name'%>
+    or
+    <%= link_to "Cancel", root_url %>
+
+  <% end %>
+
+  </div>
+</div>
+</div>

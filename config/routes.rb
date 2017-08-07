@@ -9,9 +9,13 @@ Rails.application.routes.draw do
 
   delete '/logout' => 'sessions#destroy'
 
+  get '/resets/new' => 'resets#new'
+  post '/resets' => 'resets#create'
+  get '/resets/:id/edit' => 'resets#edit'
+  patch '/resets/:id' => 'resets#update'
+
   resources :users
   resources :videos
   resources :words
-  resources :reset
 
 end
