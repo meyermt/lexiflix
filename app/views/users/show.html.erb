@@ -7,6 +7,11 @@
             <%= submit_tag "Edit My Account", class: 'btn btn-info btn-lg'%>
           <% end %>
         </li>
+        <li>
+          <%= form_tag("/resets/#{@user.id}/edit", method: 'get') do  %>
+            <%= submit_tag "Change My Password", class: 'btn btn-info btn-lg'%>
+          <% end %>
+        </li>
         <% if @user.admin == nil %>
           <li>
             <%= form_tag("/users/#{@user.id}", method: 'delete') do  %>

@@ -9,8 +9,9 @@ class SessionsController < ApplicationController
     if u != nil
       if u.authenticate(params["password"])
         if u.otp
+          session["user_id"] = u.id
           @user = u
-          render "users/edit.html.erb", notice: "You must change your password, you are currently using a one time password."
+          redirect_to "/resets/#{@user.id}/edit", alert: "You must change your password, you are currently using a one time password."
         else
           session["user_id"] = u.id
           redirect_to "/videos", notice: "Welcome back, #{u.name}!"
@@ -25,7 +26,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to "/", notice: "See ya!"
+    redirect_to root_url, notice: "Join us again soon!"
   end
 
 end
