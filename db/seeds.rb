@@ -1,16 +1,16 @@
 # Reset the 'users' table
 User.delete_all
 
-adminguy = User.create username: 'admin', name: 'admin', otp: false, owner: true, email: 'admin@gmail.com', level: 1000, admin: nil, password: 'password'
+adminguy = User.create username: 'admin', name: 'admin', otp: false, owner: true, email: 'admin@gmail.com', level: 1000, admin: nil, password: 'password', password_confirmation: 'password'
 
-cookie_monster = User.create username: 'cookiedude', name: 'Cookie Monster', otp: false, owner: false, email: 'cookies@example.com', level: 800, admin: nil, password: 'cookies'
-someone = User.create username: 'someone', name: 'Someone', otp: false, owner: false, email: 'someone@example.com', level: 800, admin: nil, password: 'something'
+cookie_monster = User.create username: 'cookiedude', name: 'Cookie Monster', otp: false, owner: false, email: 'cookies@example.com', level: 800, admin: nil, password: 'cookies', password_confirmation: 'cookies'
+someone = User.create username: 'someone', name: 'Someone', otp: false, owner: false, email: 'someone@example.com', level: 800, admin: nil, password: 'something', password_confirmation: 'something'
 
 u = User.find_by(name: 'Someone').id
 
-margaret = User.create username: 'hammy', name: 'Margaret Hamilton', otp: true, owner: false, email: 'someone@example.com', level: 300, admin: u, password: 'apollo13'
-alan = User.create username: 'completemachine', name: 'Alan Turing', otp: true, owner: false, email: 'someone@example.com', level: 400, admin: u, password: 'enigma13'
-grace = User.create username: 'pun123', name: 'Grace Hopper', otp: true, owner: false, email: 'someone@example.com', level: 500, admin: u, password: 'counterclockwise'
+margaret = User.create username: 'hammy', name: 'Margaret Hamilton', otp: true, owner: false, email: 'someone@example.com', level: 300, admin: u, password: 'apollo13', password_confirmation: 'apollo13'
+alan = User.create username: 'completemachine', name: 'Alan Turing', otp: true, owner: false, email: 'someone@example.com', level: 400, admin: u, password: 'enigma13', password_confirmation: 'enigma13'
+grace = User.create username: 'pun123', name: 'Grace Hopper', otp: true, owner: false, email: 'someone@example.com', level: 500, admin: u, password: 'counterclockwise', password_confirmation: 'counterclockwise'
 
 Video.delete_all
 

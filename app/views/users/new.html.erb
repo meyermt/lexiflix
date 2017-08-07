@@ -42,6 +42,11 @@
     </div>
 
     <div class="form-group">
+      <%= label_tag :password_confirmation, "Retype Password" %>
+      <%= password_field_tag :password_confirmation, "", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
       <%= label_tag :student_count, "Number of Students" %>
       <%= select_tag(:student_count, options_for_select(0..20), {:onChange => 'updateCountForm()', :class => 'form-control'}) %>
     </div>

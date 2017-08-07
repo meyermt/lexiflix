@@ -10,19 +10,22 @@ class UsersController < ApplicationController
     @user.username = params['username']
     @user.email = params['email']
     @user.password = params['password']
+    @user.password_confirmation = params['password_confirmation']
     @user.level = params['level'].to_i
     @user.otp = false
     @user.admin = nil
     if @user.save
+      could_save = true
       @s_users = []
       if params['student_count'].to_i > 0
-        could_save = true
         params['student_count'].to_i.times do |i|
           s_user = User.new
           s_user.name = params['student_name_' + String(i)]
           s_user.username = params['student_username_' + String(i)]
           s_user.email = params['email']
-          s_user.password = SecureRandom.uuid[0...8]
+          randPass = SecureRandom.uuid[0...8]
+          s_user.password = randPass
+          s_user.password_confirmation = randPass
           s_user.level = params['student_level_' + String(i)].to_i
           s_user.otp = true
           s_user.admin = @user.id
@@ -42,7 +45,7 @@ class UsersController < ApplicationController
         # UserMailer.welcome_email(@user, @s_users).deliver_now
         redirect_to "/sessions/new", notice: "Thanks for signing up!"
       else
-        redirect_to "/sessions/new", notice: "One or more of your students were not able to be added. Please visit your user screen to add them."
+        render 'new', notice: "One or more of your students were not able to be added. Please visit your user screen to add them."
       end
     else
       render 'new'
@@ -81,12 +84,10 @@ class UsersController < ApplicationController
       @user.level = params['level'].to_i
     elsif params['is_student']
       @user.username = params['username']
-      @user.level = params['password']
     else
       @user.username = params['username']
       @user.level = params['level'].to_i
       @user.email = params['email']
-      @user.level = params['password']
     end
     @user.name = params['name']
     if @user.save
