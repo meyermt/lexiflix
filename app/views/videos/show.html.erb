@@ -5,6 +5,8 @@
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+  delete window.player;
+  delete this.player;
   var player;
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
@@ -16,6 +18,7 @@
         'onStateChange': onPlayerStateChange
       }
     });
+    console.log(player.getCurrentTime);
   }
 
   function onPlayerReady(event) {
@@ -24,19 +27,49 @@
 
   var done = false;
   function onPlayerStateChange(event) {
-    // if (event.data == YT.PlayerState.PLAYING && !done) {
-    //   setTimeout(stopVideo, 6000);
-    //   done = true;
-    // }
+    if (event.data == YT.PlayerState.ENDED && !done) {
+       done = true;
+    }
   }
   function stopVideo() {
     player.stopVideo();
   }
 
-  function returnTime() {
-    var videoTime = player.getCurrentTime();
-    $(".time-display").text(videoTime);
+  var unescapeScript = unescapeHtml('<%= @script %>');
+  console.log(unescapeScript);
+  var jsonScript = JSON.parse(unescapeScript);
+
+  function scriptTimer() {
+    var videoTime = window.player.getCurrentTime();
+    var currentScript = jsonScript[0].text;
+    $.each(jsonScript, function (index, value) {
+      if (value.time < videoTime) {
+        currentScript = value.text;
+      }
+    });
+    console.log(currentScript);
+    $(".sub-text").text(currentScript);
   }
+
+  function unescapeHtml(safe) {
+      return safe.replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#039;/g, "'")
+          .replace(/&#39;/g, "'");
+  }
+
+  var timerFunc = setInterval(scriptTimer, 1000);
+
+  //
+  // if done {
+  //   window.clearInterval(scriptTimer);
+  // }
+  //function returnTime() {
+    //var videoTime = player.getCurrentTime();
+    //$(".time-display").text(videoTime);
+  //}
 </script>
 
 <div class="container">
@@ -62,7 +95,7 @@
       <div id="player" class="video-container">
       </div>
       <div class="overlay-desc">
-        <h4 class="sub-text"><a href="#">Some text overlay</a></h4>
+        <h4 class="sub-text"></h4>
       </div>
     </div>
   <!-- below is beginning code for the ability to watch videos at various lexical levels -->

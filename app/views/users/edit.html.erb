@@ -17,7 +17,6 @@
   <%= form_tag("/users/#{@user.id}", method: 'patch') do  %>
 
   <% if !@student_delegate %> <!-- you are acting on your own behalf -->
-    <%= hidden_field_tag(:is_student, true) %>
     <div class="form-group">
       <%= label_tag :name, "Name" %>
       <%= text_field_tag :name, @user.name, autofocus: true, class: 'form-control' %>
@@ -27,7 +26,6 @@
       <%= label_tag :username, "Username" %>
       <%= text_field_tag :username, @user.username, class: 'form-control' %>
     </div>
-
     <% if @user.admin == nil %> <!-- if you are an admin you can also set these -->
       <%= hidden_field_tag(:is_student, false) %>
       <div class="form-group">
@@ -38,6 +36,8 @@
         <%= label_tag :level, "Lexical Reading Level" %>
         <%= text_field_tag :level, @user.level, class: 'form-control' %>
       </div>
+    <% else %>
+      <%= hidden_field_tag(:is_student, true) %>
     <% end %>
   <% else %> <!-- you are acting on your students behalf -->
       <%= hidden_field_tag(:student_id, @user.id) %>

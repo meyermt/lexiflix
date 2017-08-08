@@ -16,6 +16,9 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find_by(id: params["id"])
+    script_title = @video.title.downcase.tr(' ', '_')
+    level = find_video_level(@user.level)
+    @script = JSON.parse(File.read("app/assets/json/#{script_title}_#{level}.json")).to_json
   end
 
   def new
@@ -78,6 +81,14 @@ class VideosController < ApplicationController
     @video = Video.find_by(id: params["id"])
     @video.delete
     redirect_to root_url, notice: 'Video has been deleted'
+  end
+
+  def find_video_level(level)
+    rounded = level.round(-2)
+    if rounded == 0
+      rounded = 100
+    end
+    return rounded
   end
 
 end

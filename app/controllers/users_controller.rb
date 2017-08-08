@@ -79,12 +79,16 @@ class UsersController < ApplicationController
     if @user.blank?
       redirect_to root_url, notice: "You need to login first."
     end
-    if params['student_id'] != nil
+    print "is it true about student id #{params['student_id']}"
+    if params['student_id'] != nil # you are changing a student's thing
+      print 'you are helping a student'
       @user = User.find_by(id: params['student_id'])
       @user.level = params['level'].to_i
-    elsif params['is_student']
+    elsif params['is_student'] == 'true'
+      print 'you are a student'
       @user.username = params['username']
     else
+      print 'you are here teach'
       @user.username = params['username']
       @user.level = params['level'].to_i
       @user.email = params['email']
