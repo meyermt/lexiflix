@@ -12,6 +12,29 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "answers", force: :cascade do |t|
+    t.integer "question_id"
+    t.text "solution"
+    t.boolean "correct", default: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "query"
+    t.integer "video_id"
+    t.integer "level"
+    t.index ["video_id"], name: "index_questions_on_video_id"
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "score"
+    t.integer "video_id"
+    t.integer "level"
+    t.index ["user_id"], name: "index_results_on_user_id"
+    t.index ["video_id"], name: "index_results_on_video_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.text "name"
     t.text "email"
@@ -31,7 +54,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.text "icon_url"
     t.text "director"
     t.text "description"
-    t.text "script_root_url"
     t.index ["loc_id"], name: "index_videos_on_loc_id"
   end
 

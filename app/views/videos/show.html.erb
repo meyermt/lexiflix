@@ -36,7 +36,6 @@
   }
 
   var unescapeScript = unescapeHtml('<%= @script %>');
-  console.log(unescapeScript);
   var jsonScript = JSON.parse(unescapeScript);
 
   function scriptTimer() {
@@ -47,8 +46,14 @@
         currentScript = value.text;
       }
     });
-    console.log(currentScript);
     $(".sub-text").text(currentScript);
+    if (done) {
+      $(".vid-questions").toggleClass("hidden");
+      // stop running this when video is done
+      window.clearInterval(timerFunc);
+      // might have to do this in chrome
+      this.clearInterval(timerFunc);
+    }
   }
 
   function unescapeHtml(safe) {
@@ -95,13 +100,25 @@
       <div id="player" class="video-container">
       </div>
       <div class="overlay-desc">
+        <!-- <h4><a onclick="showDefinition()" href="#" class="sub-text"></a></h4> -->
         <h4 class="sub-text"></h4>
       </div>
+    </div>
+    <div class="alert alert-info">
+      <strong>Eventually this will show your definition.</strong>
     </div>
   <!-- below is beginning code for the ability to watch videos at various lexical levels -->
   <!-- <h4><a onclick="returnTime()" href="#">See the video time</h4>
    <div class="time-display">
 
   </div> -->
+  </div>
+  <div class="vid-questions row hidden">
+    <div class="col-sm-8">
+      <% questions = Question.where(level: @user.level, video_id: @video.id) %>
+      <% questions.each do | question | %>
+        <p><%= question.query %></p>
+      <% end %>
+    </div>
   </div>
 </div>

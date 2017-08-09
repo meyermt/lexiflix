@@ -5,6 +5,7 @@ class Video < ApplicationRecord
   validates_uniqueness_of :icon_url, presence: true
   validates :director, presence: true
   validates :description, presence: true
-  validates :script_root_url, presence: true
+
+  has_many :questions
 
 end

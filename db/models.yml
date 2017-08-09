@@ -16,7 +16,22 @@ Video
   icon_url: text
   director: text
   description: text
-  script_root_url: text
+
+Question
+  video_id: integer
+  level: integer
+  query: text
+
+Answer
+  question_id: integer
+  solution: text
+  correct: boolean
+
+Result
+  user_id: integer
+  video_id: integer
+  level: integer
+  score: integer
 
 # This file allows you to specify your domain model
 # in .yml format.  Use `rails db:migrate` to apply your

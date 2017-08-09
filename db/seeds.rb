@@ -18,6 +18,23 @@ video1 = Video.create title: 'Invader in the Den', loc_id: 'WYcTAAAboC4', icon_u
 video2 = Video.create title: 'Big Yawn', loc_id: 'ZH-1JdoTiKU', icon_url: 'https://i.ytimg.com/vi/ZH-1JdoTiKU/sddefault.jpg', director: 'Mike Meyer', description: 'Frustrated dog yawns out his frustration.'
 video3 = Video.create title: 'What You Looking At?', loc_id: '5imNMZDGQ4Y', icon_url: 'https://i.ytimg.com/vi/5imNMZDGQ4Y/sddefault.jpg', director: 'Mike Meyer', description: 'Cat and dog question filmer, possibly life.'
 
+question1 = Question.create video_id: video2.id, level: 300, query: 'How frustrated does this dog seem?'
+question2 = Question.create video_id: video2.id, level: 300, query: 'How cool was the dog in this video?'
+question3 = Question.create video_id: video2.id, level: 300, query: 'What did the subtitle tell you that you did not already know?'
+
+answer1a = Answer.create question_id: question1.id, solution: 'He looks very frustrated.', correct: true
+answer1b = Answer.create question_id: question1.id, solution: 'Not sure what you mean he looks happy.', correct: false
+answer1c = Answer.create question_id: question1.id, solution: 'Maybe more tired than anything.', correct: false
+answer2a = Answer.create question_id: question2.id, solution: 'I mean, he is no Fonz.', correct: false
+answer2b = Answer.create question_id: question2.id, solution: 'The answer is the coolest.', correct: true
+answer2c = Answer.create question_id: question2.id, solution: 'Not cool I hate looking at this creature.', correct: false
+answer3a = Answer.create question_id: question3.id, solution: 'There were subtitles?', correct: false
+answer3b = Answer.create question_id: question3.id, solution: 'Nothing, I know everything.', correct: false
+answer3c = Answer.create question_id: question3.id, solution: 'That you plan on making subtitles better.', correct: true
+
+result1 = Result.create user_id: grace.id, video_id: video2.id, level: 300, score: 80
+
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
