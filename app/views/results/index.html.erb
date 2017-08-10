@@ -1,0 +1,38 @@
+<div class="container">
+<div class="page-header">
+  <h1 class="network-name">View Student Results</h1>
+</div>
+
+
+<% @students.each do | student |  %> <!-- you are acting on your own behalf -->
+  <div class="row">
+
+    <div class="col-sm-12">
+
+      <h3>Name: <%= student.name %></h3>
+      <p><u>Username</u>: <%= student.username %></p>
+
+      <h4>Overall Reading Progress at Current Level</h4>
+      <% agg = 0.0
+         results = Result.where(user_id: student.id, level: student.level)
+         results.each do | result |
+           agg += result.score
+         end
+         aggScore = agg / results.count
+         col_class = get_color_class(aggScore) %>
+      <div class="progress">
+        <div class="progress-bar progress-bar-<%= col_class %>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= aggScore %>%">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= form_tag("/results/#{student.id}", method: 'get') do  %>
+            <%= hidden_field_tag(:student_id, student.id) %>
+            <%= submit_tag "See Detailed Results", class: 'btn btn-info btn-lg'%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

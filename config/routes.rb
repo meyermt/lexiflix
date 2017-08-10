@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get '/resets/:id/edit' => 'resets#edit'
   patch '/resets/:id' => 'resets#update'
 
+  post '/results' => 'results#create'
+  get '/results' => 'results#index'
+  get '/results/:id' => 'results#show'
+
   resources :users
   resources :videos
   resources :words

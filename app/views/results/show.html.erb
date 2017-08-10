@@ -1,0 +1,23 @@
+<div class="container">
+<div class="page-header">
+  <h1 class="network-name">Detailed Student Results for <strong><%= @student.name %></strong></h1>
+</div>
+
+
+<% @results.each do | result |  %> <!-- you are acting on your own behalf -->
+  <div class="row">
+    <div class="col-sm-12">
+
+      <% video = Video.find_by(id: result.video_id) %>
+      <p>Quiz for video: <%= video.title %></p>
+      <p>Level: <%= result.level %></p>
+      <p>Score: <%= result.score %>%</p>
+      <% col_class = get_color_class(result.score) %>
+      <div class="progress">
+        <div class="progress-bar progress-bar-<%= col_class %>" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= result.score %>%">
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

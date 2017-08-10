@@ -4,7 +4,7 @@ class Question < ApplicationRecord
   validates :level, presence: true
   validates :query, presence: true
 
-  has_many :answers
+  has_many :answers, dependent: :delete_all
 
   belongs_to :video
 

@@ -104,20 +104,27 @@
         <h4 class="sub-text"></h4>
       </div>
     </div>
-    <div class="alert alert-info">
-      <strong>Eventually this will show your definition.</strong>
-    </div>
-  <!-- below is beginning code for the ability to watch videos at various lexical levels -->
-  <!-- <h4><a onclick="returnTime()" href="#">See the video time</h4>
-   <div class="time-display">
-
-  </div> -->
+  </div>
+  <div class="row alert alert-info">
+    <strong>Eventually this will show your definition.</strong>
   </div>
   <div class="vid-questions row hidden">
     <div class="col-sm-8">
-      <% questions = Question.where(level: @user.level, video_id: @video.id) %>
-      <% questions.each do | question | %>
-        <p><%= question.query %></p>
+      <%= form_tag("/results", method: 'post') do  %>
+        <%= hidden_field_tag(:video_id, @video.id) %>
+        <% questions = Question.where(level: @user.level, video_id: @video.id) %>
+        <% questions.each do | question | %>
+          <h4><%= question.query %></h4>
+          <% question.answers.each_with_index do | answer, index | %>
+          <div class="radio">
+            <%= radio_button_tag(:"question_#{question.id}", "#{question.id}_#{answer.id}") %>
+            <%= label_tag(:answer_label, answer.solution) %>
+          </div>
+          <% end %>
+        <% end %>
+      <%= submit_tag "Submit My Answers!", class: 'btn btn-info btn-lg'%>
+      or
+      <%= link_to "Don't Feel Like it Now", "videos" %>
       <% end %>
     </div>
   </div>

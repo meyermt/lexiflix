@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates :level, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 2000 }
 
-  has_many :results
+  has_many :results, dependent: :delete_all
 
   before_validation :check_email_unique
   before_validation :check_password

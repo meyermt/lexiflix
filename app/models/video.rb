@@ -6,6 +6,6 @@ class Video < ApplicationRecord
   validates :director, presence: true
   validates :description, presence: true
 
-  has_many :questions
+  has_many :questions, dependent: :delete_all
 
 end

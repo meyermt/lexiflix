@@ -17,6 +17,9 @@
               <% if session["user_id"].present? %>
                 <% user = User.find_by(id: session["user_id"]) %>
                 <% if !user.blank? %>
+                  <% if user.admin == nil %>
+                    <li><%= link_to "Student Progress", "/results", class: "page-scroll" %></li>
+                  <% end %>
                   <% if user.owner == true %>
                     <li><%= link_to "Browse or Manage Videos", '/videos', class: "page-scroll" %></li>
                     <li><%= link_to "Browse Users", '/users', class: "page-scroll" %></li>
