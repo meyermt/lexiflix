@@ -25,23 +25,32 @@
   position: relative;
 }
 
+iframe {
+   display: block;
+   margin: 0 auto;
+}
+
 .page-header {
   margin-top: 100px;
 }
 
 .overlay-desc {
   position: absolute;
-  top: 320px;
-  left: 65px;
-  width: 540px;
+  top: 420px;
+  left: 158px;
+  width: 853px;
   height: 20px;
-  color: white;
   z-index: 2147483647;
-}
-
-.sub-text {
   align-items: center;
   text-align: center;
+}
+
+a.sub-text {
+  align-items: center;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px #000000;
+  font-size: 26px;
 }
 
 /*

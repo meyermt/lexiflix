@@ -77,8 +77,6 @@ function updateCountForm(){
   }
 }
 
-
-
 // setInterval(function(){
 //   $(".testthing").append("<p>some stuff to read</p>");
 //   console.log("you are running this")

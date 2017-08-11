@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   get '/results' => 'results#index'
   get '/results/:id' => 'results#show'
 
+  get '/words/:word' => 'words#show'
+
   resources :users
   resources :videos
-  resources :words
 
 end

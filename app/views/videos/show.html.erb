@@ -1,82 +1,3 @@
-<script>
-  //console.log("your loc id is " + <%= @video.loc_id %>);
-  var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  delete window.player;
-  delete this.player;
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '390',
-      width: '640',
-      videoId: '<%= @video.loc_id %>',
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-    console.log(player.getCurrentTime);
-  }
-
-  function onPlayerReady(event) {
-    event.target.playVideo();
-  }
-
-  var done = false;
-  function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED && !done) {
-       done = true;
-    }
-  }
-  function stopVideo() {
-    player.stopVideo();
-  }
-
-  var unescapeScript = unescapeHtml('<%= @script %>');
-  var jsonScript = JSON.parse(unescapeScript);
-
-  function scriptTimer() {
-    var videoTime = window.player.getCurrentTime();
-    var currentScript = jsonScript[0].text;
-    $.each(jsonScript, function (index, value) {
-      if (value.time < videoTime) {
-        currentScript = value.text;
-      }
-    });
-    $(".sub-text").text(currentScript);
-    if (done) {
-      $(".vid-questions").toggleClass("hidden");
-      // stop running this when video is done
-      window.clearInterval(timerFunc);
-      // might have to do this in chrome
-      this.clearInterval(timerFunc);
-    }
-  }
-
-  function unescapeHtml(safe) {
-      return safe.replace(/&amp;/g, '&')
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>')
-          .replace(/&quot;/g, '"')
-          .replace(/&#039;/g, "'")
-          .replace(/&#39;/g, "'");
-  }
-
-  var timerFunc = setInterval(scriptTimer, 1000);
-
-  //
-  // if done {
-  //   window.clearInterval(scriptTimer);
-  // }
-  //function returnTime() {
-    //var videoTime = player.getCurrentTime();
-    //$(".time-display").text(videoTime);
-  //}
-</script>
-
 <div class="container">
   <div class="page-header">
     <ul class="list-inline">
@@ -101,12 +22,9 @@
       </div>
       <div class="overlay-desc">
         <!-- <h4><a onclick="showDefinition()" href="#" class="sub-text"></a></h4> -->
-        <h4 class="sub-text"></h4>
+        <a href="#" class="sub-text"></a>
       </div>
     </div>
-  </div>
-  <div class="row alert alert-info">
-    <strong>Eventually this will show your definition.</strong>
   </div>
   <div class="vid-questions row hidden">
     <div class="col-sm-8">
@@ -129,3 +47,88 @@
     </div>
   </div>
 </div>
+
+<script>
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+delete window.player;
+delete this.player;
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '480',
+    width: '853',
+    videoId: '<%= @video.loc_id %>',
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+  console.log(player.getCurrentTime);
+}
+
+function onPlayerReady(event) {
+  event.target.playVideo();
+}
+
+var done = false;
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.ENDED && !done) {
+     done = true;
+  }
+}
+
+function stopVideo() {
+  player.stopVideo();
+}
+
+var unescapeScript = unescapeHtml('<%= @script %>');
+var jsonScript = JSON.parse(unescapeScript);
+
+function scriptTimer() {
+  var videoTime = window.player.getCurrentTime();
+  var currentScript = jsonScript[0].text;
+  $.each(jsonScript, function (index, value) {
+    if (value.time < videoTime) {
+      currentScript = value.text;
+    }
+  });
+  var parsedScript = currentScript.split(" ");
+  $.each(parsedScript, function (index, value) {
+
+  });
+  $(".sub-text").text(currentScript);
+  if (done) {
+    $(".vid-questions").toggleClass("hidden");
+    // stop running this when video is done
+    window.clearInterval(timerFunc);
+    // might have to do this in chrome
+    this.clearInterval(timerFunc);
+  }
+}
+
+function unescapeHtml(safe) {
+    return safe.replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'")
+        .replace(/&#39;/g, "'");
+}
+
+var timerFunc = setInterval(scriptTimer, 1000);
+
+
+
+$.ajax({
+  url: '/words/apple',
+  success: function(response) {
+    console.log(response)
+  }
+});
+
+</script>
