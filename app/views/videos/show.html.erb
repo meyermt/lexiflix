@@ -21,12 +21,19 @@
       <div id="player" class="video-container">
       </div>
       <div class="overlay-desc">
-        <!-- <h4><a onclick="showDefinition()" href="#" class="sub-text"></a></h4> -->
-        <a href="#" class="sub-text"></a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="alert alert-info text-center definition">
       </div>
     </div>
   </div>
   <div class="vid-questions row hidden">
+    <div class="alert alert-success text-center col-lg-12">
+      <h3>How well do you know the video? Answer below!</h3>
+    </div>
     <div class="col-sm-8">
       <%= form_tag("/results", method: 'post') do  %>
         <%= hidden_field_tag(:video_id, @video.id) %>
@@ -88,20 +95,25 @@ function stopVideo() {
 
 var unescapeScript = unescapeHtml('<%= @script %>');
 var jsonScript = JSON.parse(unescapeScript);
+var currentScript = jsonScript[0].text;
 
 function scriptTimer() {
   var videoTime = window.player.getCurrentTime();
-  var currentScript = jsonScript[0].text;
   $.each(jsonScript, function (index, value) {
     if (value.time < videoTime) {
       currentScript = value.text;
     }
   });
   var parsedScript = currentScript.split(" ");
-  $.each(parsedScript, function (index, value) {
-
-  });
-  $(".sub-text").text(currentScript);
+  var oldText = $(".overlay-desc").first().text();
+  console.log("parsed 0 is " + currentScript + " and old 0 is " + oldText);
+  var isNewScript = currentScript.trim() !== oldText.trim();
+  if (isNewScript) {
+    $(".overlay-desc").html('');
+    $.each(parsedScript, function (index, value) {
+      $(".overlay-desc").append('<a href="#/" class="sub-text" onClick="clickButton(this)">' + value + ' </a>');
+    });
+  }
   if (done) {
     $(".vid-questions").toggleClass("hidden");
     // stop running this when video is done
@@ -109,6 +121,22 @@ function scriptTimer() {
     // might have to do this in chrome
     this.clearInterval(timerFunc);
   }
+}
+
+function clickButton(wordElement) {
+  console.log("calling the on click event for " + wordElement.text);
+    var cleanWord = wordElement.text.trim();
+    var xhttp = new XMLHttpRequest();
+    $(".definition").text("");
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        $(".definition").html("<strong>" + cleanWord + ": </strong>" + xhttp.responseText);
+      } else {
+        $(".definition").html("Sorry, unable to find this word in the dictionary.");
+      }
+    };
+    xhttp.open("GET", "/words/" + cleanWord, true);
+    xhttp.send();
 }
 
 function unescapeHtml(safe) {
@@ -123,12 +151,13 @@ function unescapeHtml(safe) {
 var timerFunc = setInterval(scriptTimer, 1000);
 
 
-
-$.ajax({
-  url: '/words/apple',
-  success: function(response) {
-    console.log(response)
-  }
-});
+// function lookupWord(word) {
+//   $.ajax({
+//     url: "/words/" + word,
+//     success: function(response) {
+//       console.log(response)
+//     }
+//   });
+// }
 
 </script>
