@@ -3,8 +3,8 @@ User.delete_all
 
 adminguy = User.create username: 'admin', name: 'admin', otp: false, owner: true, email: 'admin@gmail.com', level: 1000, admin: nil, password: 'password', password_confirmation: 'password'
 
-cookie_monster = User.create username: 'cookiedude', name: 'Cookie Monster', otp: false, owner: false, email: 'cookies@example.com', level: 800, admin: nil, password: 'cookies', password_confirmation: 'cookies'
-someone = User.create username: 'someone', name: 'Someone', otp: false, owner: false, email: 'someone@example.com', level: 800, admin: nil, password: 'something', password_confirmation: 'something'
+cookie_monster = User.create username: 'cookiedude', name: 'Cookie Monster', otp: false, owner: false, email: 'cookies@example.com', level: 300, admin: nil, password: 'cookies', password_confirmation: 'cookies'
+someone = User.create username: 'someone', name: 'Someone', otp: false, owner: false, email: 'someone@example.com', level: 300, admin: nil, password: 'something', password_confirmation: 'something'
 
 u = User.find_by(name: 'Someone').id
 
@@ -14,9 +14,13 @@ grace = User.create username: 'pun123', name: 'Grace Hopper', otp: true, owner: 
 
 Video.delete_all
 
-video1 = Video.create title: 'Invader in the Den', loc_id: 'WYcTAAAboC4', icon_url: 'https://i.ytimg.com/vi/WYcTAAAboC4/sddefault.jpg', director: 'Mike Meyer', description: 'Cat learns his lesson after sneaking into a dog den.'
-video2 = Video.create title: 'Big Yawn', loc_id: 'ZH-1JdoTiKU', icon_url: 'https://i.ytimg.com/vi/ZH-1JdoTiKU/sddefault.jpg', director: 'Mike Meyer', description: 'Frustrated dog yawns out his frustration.'
-video3 = Video.create title: 'What You Looking At?', loc_id: '5imNMZDGQ4Y', icon_url: 'https://i.ytimg.com/vi/5imNMZDGQ4Y/sddefault.jpg', director: 'Mike Meyer', description: 'Cat and dog question filmer, possibly life.'
+video1 = Video.create title: 'Invader in the Den', loc_id: 'WYcTAAAboC4', icon_url: 'https://i3.ytimg.com/vi/WYcTAAAboC4/maxresdefault.jpg', director: 'Mike Meyer', description: 'Cat learns his lesson after sneaking into a dog den.'
+video2 = Video.create title: 'Big Yawn', loc_id: 'ZH-1JdoTiKU', icon_url: 'https://i3.ytimg.com/vi/ZH-1JdoTiKU/maxresdefault.jpg', director: 'Mike Meyer', description: 'Frustrated dog yawns out his frustration.'
+video3 = Video.create title: 'What You Looking At', loc_id: '5imNMZDGQ4Y', icon_url: 'https://i3.ytimg.com/vi/5imNMZDGQ4Y/maxresdefault.jpg', director: 'Mike Meyer', description: 'Cat and dog question filmer, possibly life.'
+video4 = Video.create title: 'Pokemon EP 31', loc_id: 'GjV0KcFetDI', icon_url: 'http://i3.ytimg.com/vi/GjV0KcFetDI/maxresdefault.jpg', director: 'Pokemon Guy', description: 'Thrilling episode of Pokemon.'
+video5 = Video.create title: 'Pokemon EP 26', loc_id: 'bbC2yytVYfE', icon_url: 'http://i3.ytimg.com/vi/bbC2yytVYfE/maxresdefault.jpg', director: 'Pokemon Guy', description: 'The 26th thrilling episode of Pokemon.'
+video6 = Video.create title: 'Pokemon EP 25', loc_id: 'uKu4kJuPMjk', icon_url: 'http://i3.ytimg.com/vi/uKu4kJuPMjk/maxresdefault.jpg', director: 'Pokemon Guy', description: "In number 25, little animals fight each other. It's great."
+
 
 Question.delete_all
 

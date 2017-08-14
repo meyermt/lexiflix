@@ -11,34 +11,43 @@
       <% end %>
     </ul>
   </div>
-  <div class="row">
 
-  </div>
-<div class="row">
+  <% @videos.each_with_index do |v, index| %>
+    <% if index % 4 == 0 %>
+      <% print "index is #{index} and making row" %>
+      <div class="row">
+    <% end %>
 
-  <% @videos.each do |v| %>
+      <!-- Video Thumbnail -->
+      <div class="col-sm-12 col-md-3">
+        <div class="thumbnail">
 
-  <!-- Product Thumbnail -->
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
+          <% icon_url = v.icon_url %>
 
-      <% icon_url = v.icon_url %>
+          <%= link_to image_tag(icon_url),
+                      "/videos/#{v.id}",
+                      alt: v.title, class: 'img-responsive' %>
 
-      <%= link_to image_tag(icon_url),
-                  "/videos/#{v.id}",
-                  alt: v.title, class: 'img-responsive' %>
-
-      <div class="caption">
-        <h4><%= link_to v.title, "/videos/#{v.id}"%></h4>
-        <p><%= v.description %></p>
-        <p><u>Director</u>: <%= v.director %></p>
-        <% if @user.owner == true %>
-          <p><%= link_to "Edit", "/videos/#{v.id}/edit"%></p>
-        <% end %>
+          <div class="caption">
+            <h4><%= link_to v.title, "/videos/#{v.id}"%></h4>
+            <p><%= v.description %></p>
+            <p><u>Director</u>: <%= v.director %></p>
+            <% if @user.owner == true %>
+              <p><%= link_to "Edit", "/videos/#{v.id}/edit"%></p>
+            <% end %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+
+    <% if (index + 1) % 4 == 0 %>
+    <% print "index is #{index} and ending row" %>
+      </div>
+    <% end %>
 
   <% end %>
-</div>
+
+  <% if @videos.count % 4 != 0 %>
+    </div>
+  <% end %>
+
 </div>

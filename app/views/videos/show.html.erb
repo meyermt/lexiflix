@@ -125,13 +125,13 @@ function scriptTimer() {
 
 function clickButton(wordElement) {
   console.log("calling the on click event for " + wordElement.text);
-    var cleanWord = wordElement.text.trim();
+    var cleanWord = wordElement.text.trim().replace(/[\!\.\?\,\)\(]+/g, "");
     var xhttp = new XMLHttpRequest();
     $(".definition").text("");
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         $(".definition").html("<strong>" + cleanWord + ": </strong>" + xhttp.responseText);
-      } else {
+      } else if (this.readyState == 4 && this.status != 200) {
         $(".definition").html("Sorry, unable to find this word in the dictionary.");
       }
     };
@@ -149,15 +149,5 @@ function unescapeHtml(safe) {
 }
 
 var timerFunc = setInterval(scriptTimer, 1000);
-
-
-// function lookupWord(word) {
-//   $.ajax({
-//     url: "/words/" + word,
-//     success: function(response) {
-//       console.log(response)
-//     }
-//   });
-// }
 
 </script>
