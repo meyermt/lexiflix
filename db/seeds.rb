@@ -1,16 +1,16 @@
 # Reset the 'users' table
 User.delete_all
 
-adminguy = User.create username: 'admin', name: 'admin', otp: false, owner: true, email: 'admin@gmail.com', level: 1000, admin: nil, password: 'password', password_confirmation: 'password'
+adminguy = User.create username: 'admin', name: 'admin', otp: false, owner: true, email: 'admin@gmail.com', level: 800, admin: nil, password: 'password', password_confirmation: 'password'
 
-cookie_monster = User.create username: 'cookiedude', name: 'Cookie Monster', otp: false, owner: false, email: 'cookies@example.com', level: 300, admin: nil, password: 'cookies', password_confirmation: 'cookies'
-someone = User.create username: 'someone', name: 'Someone', otp: false, owner: false, email: 'someone@example.com', level: 300, admin: nil, password: 'something', password_confirmation: 'something'
+cookie_monster = User.create username: 'cookiedude', name: 'Cookie Monster', otp: false, owner: false, email: 'cookies@example.com', level: 800, admin: nil, password: 'cookies', password_confirmation: 'cookies'
+someone = User.create username: 'someone', name: 'Someone', otp: false, owner: false, email: 'someone@example.com', level: 800, admin: nil, password: 'something', password_confirmation: 'something'
 
 u = User.find_by(name: 'Someone').id
 
 margaret = User.create username: 'hammy', name: 'Margaret Hamilton', otp: true, owner: false, email: 'someone@example.com', level: 300, admin: u, password: 'apollo13', password_confirmation: 'apollo13'
-alan = User.create username: 'completemachine', name: 'Alan Turing', otp: true, owner: false, email: 'someone@example.com', level: 400, admin: u, password: 'enigma13', password_confirmation: 'enigma13'
-grace = User.create username: 'pun123', name: 'Grace Hopper', otp: true, owner: false, email: 'someone@example.com', level: 500, admin: u, password: 'counterclockwise', password_confirmation: 'counterclockwise'
+alan = User.create username: 'completemachine', name: 'Alan Turing', otp: true, owner: false, email: 'someone@example.com', level: 300, admin: u, password: 'enigma13', password_confirmation: 'enigma13'
+grace = User.create username: 'pun123', name: 'Grace Hopper', otp: true, owner: false, email: 'someone@example.com', level: 300, admin: u, password: 'counterclockwise', password_confirmation: 'counterclockwise'
 
 Video.delete_all
 
@@ -24,25 +24,66 @@ video6 = Video.create title: 'Pokemon EP 25', loc_id: 'uKu4kJuPMjk', icon_url: '
 
 Question.delete_all
 
-question1 = Question.create video_id: video2.id, level: 300, query: 'How frustrated does this dog seem?'
-question2 = Question.create video_id: video2.id, level: 300, query: 'How cool was the dog in this video?'
-question3 = Question.create video_id: video2.id, level: 300, query: 'What did the subtitle tell you that you did not already know?'
+question1 = Question.create video_id: video2.id, level: 300, query: "300 level question - How frustrated does this dog seem?"
+question2 = Question.create video_id: video2.id, level: 300, query: "300 level question - How cool was the dog in this video?"
+question3 = Question.create video_id: video2.id, level: 300, query: "300 level question - What did the subtitle tell you that you did not already know?"
+
+question4 = Question.create video_id: video1.id, level: 300, query: "300 level question - Why did the cat enter the den?"
+question5 = Question.create video_id: video1.id, level: 300, query: "300 level question - Is that cat pure evil?"
+question6 = Question.create video_id: video1.id, level: 300, query: "300 level question - Why did the dog enter the den?"
+
+question7 = Question.create video_id: video3.id, level: 300, query: "300 level question - This cat is clearly pure evil, right?"
+question8 = Question.create video_id: video3.id, level: 300, query: "300 level question - Why do cats even exist?"
+question9 = Question.create video_id: video3.id, level: 300, query: "300 level question - Is the cat up to some evil plan?"
+
+question10 = Question.create video_id: video4.id, level: 300, query: "300 level question - Some pokemon question"
+question11 = Question.create video_id: video4.id, level: 300, query: "300 level question - Some pokemon question"
+question12 = Question.create video_id: video4.id, level: 300, query: "300 level question - Some pokemon question"
+
+question13 = Question.create video_id: video5.id, level: 300, query: "300 level question - Some pokemon question"
+question14 = Question.create video_id: video5.id, level: 300, query: "300 level question - Some pokemon question"
+question15 = Question.create video_id: video5.id, level: 300, query: "300 level question - Some pokemon question"
+
+question16 = Question.create video_id: video6.id, level: 300, query: "300 level question - Some pokemon question"
+question17 = Question.create video_id: video6.id, level: 300, query: "300 level question - Some pokemon question"
+question18 = Question.create video_id: video6.id, level: 300, query: "300 level question - Some pokemon question"
+
+question19 = Question.create video_id: video2.id, level: 800, query: "800 level question - How frustrated does this dog seem?"
+question20 = Question.create video_id: video2.id, level: 800, query: "800 level question - How cool was the dog in this video?"
+question21 = Question.create video_id: video2.id, level: 800, query: "800 level question - What did the subtitle tell you that you did not already know?"
+
+question22 = Question.create video_id: video1.id, level: 800, query: "800 level question - Why did the cat enter the den?"
+question23 = Question.create video_id: video1.id, level: 800, query: "800 level question - Is that cat pure evil?"
+question24 = Question.create video_id: video1.id, level: 800, query: "800 level question - Why did the dog enter the den?"
+
+question25 = Question.create video_id: video3.id, level: 800, query: "800 level question - This cat is clearly pure evil, right?"
+question26 = Question.create video_id: video3.id, level: 800, query: "800 level question - Why do cats even exist?"
+question27 = Question.create video_id: video3.id, level: 800, query: "800 level question - Is the cat up to some evil plan?"
+
+question28 = Question.create video_id: video4.id, level: 800, query: "800 level question - Some pokemon question"
+question29 = Question.create video_id: video4.id, level: 800, query: "800 level question - Some pokemon question"
+question30 = Question.create video_id: video4.id, level: 800, query: "800 level question - Some pokemon question"
+
+question31 = Question.create video_id: video5.id, level: 800, query: "800 level question - Some pokemon question"
+question32 = Question.create video_id: video5.id, level: 800, query: "800 level question - Some pokemon question"
+question33 = Question.create video_id: video5.id, level: 800, query: "800 level question - Some pokemon question"
+
+question34 = Question.create video_id: video6.id, level: 800, query: "800 level question - Some pokemon question"
+question35 = Question.create video_id: video6.id, level: 800, query: "800 level question - Some pokemon question"
+question36 = Question.create video_id: video6.id, level: 800, query: "800 level question - Some pokemon question"
 
 Answer.delete_all
 
-answer1a = Answer.create question_id: question1.id, solution: 'He looks very frustrated.', correct: true
-answer1b = Answer.create question_id: question1.id, solution: 'Not sure what you mean he looks happy.', correct: false
-answer1c = Answer.create question_id: question1.id, solution: 'Maybe more tired than anything.', correct: false
-answer2a = Answer.create question_id: question2.id, solution: 'I mean, he is no Fonz.', correct: false
-answer2b = Answer.create question_id: question2.id, solution: 'The answer is the coolest.', correct: true
-answer2c = Answer.create question_id: question2.id, solution: 'Not cool I hate looking at this creature.', correct: false
-answer3a = Answer.create question_id: question3.id, solution: 'There were subtitles?', correct: false
-answer3b = Answer.create question_id: question3.id, solution: 'Nothing, I know everything.', correct: false
-answer3c = Answer.create question_id: question3.id, solution: 'That you plan on making subtitles better.', correct: true
+Question.all.each do | question |
+  answer1a = Answer.create question_id: question.id, solution: 'I like the first answer.', correct: true
+  answer1b = Answer.create question_id: question.id, solution: 'I think it is the second answer.', correct: false
+  answer1c = Answer.create question_id: question.id, solution: 'Definitely the third answer.', correct: false
+end
 
 Result.delete_all
 
-result1 = Result.create user_id: grace.id, video_id: video2.id, level: 300, score: 80
+result1 = Result.create user_id: grace.id, video_id: video2.id, level: 300, score: 66
+result2 = Result.create user_id: grace.id, video_id: video2.id, level: 300, score: 100
 
 
 # This file should contain all the record creation needed to seed the database with its default values.

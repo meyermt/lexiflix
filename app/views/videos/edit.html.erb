@@ -41,11 +41,6 @@
       <%= text_field_tag :icon_url, @video.icon_url, class: 'form-control' %>
     </div>
 
-    <div class="form-group">
-      <%= label_tag :script_root_url, "Script Root URL" %>
-      <%= text_field_tag :script_root_url, @video.script_root_url, class: 'form-control' %>
-    </div>
-
     <%= submit_tag "Update Information", class: 'btn btn-info btn-lg'%>
     or
     <%= link_to "Cancel", "videos" %>

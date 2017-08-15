@@ -11,7 +11,12 @@
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                           <a href="/users/new" class="btn btn-default btn-lg"><span class="network-name">Start Watching</span></a>
-                          <a href="/sessions/new" class="btn btn-default btn-lg"><span class="network-name">Sign In</span></a>
+                          <% if session["user_id"].present? %>
+                          <% user = User.find_by(id: session["user_id"]) %>
+                            <a href="/users/#{user.id}" class="btn btn-default btn-lg"><span class="network-name">My Account</span></a>
+                          <% else %>
+                            <a href="/sessions/new" class="btn btn-default btn-lg"><span class="network-name">Sign In</span></a>
+                          <% end %>
                         </ul>
                     </div>
                 </div>

@@ -41,7 +41,7 @@ class UsersController < ApplicationController
         end
       end
       if could_save
-        # Still working on this
+        # TODO: Get mailer to work
         # UserMailer.welcome_email(@user, @s_users).deliver_now
         redirect_to "/sessions/new", notice: "Thanks for signing up!"
       else
@@ -79,16 +79,12 @@ class UsersController < ApplicationController
     if @user.blank?
       redirect_to root_url, notice: "You need to login first."
     end
-    print "is it true about student id #{params['student_id']}"
     if params['student_id'] != nil # you are changing a student's thing
-      print 'you are helping a student'
       @user = User.find_by(id: params['student_id'])
       @user.level = params['level'].to_i
     elsif params['is_student'] == 'true'
-      print 'you are a student'
       @user.username = params['username']
     else
-      print 'you are here teach'
       @user.username = params['username']
       @user.level = params['level'].to_i
       @user.email = params['email']
@@ -137,23 +133,5 @@ class UsersController < ApplicationController
       return false
     end
   end
-
-  # def change_password
-  #   @user = User.find(@current_user)
-  #   current_password = params[:user][:current_password]
-  #   user = User.authenticate(@user.email, current_password)
-  #   if @user && user
-  #     # @user.update.password = params[:new_password]
-  #     # new_password = params[:password]
-  #     # @user.update(new_password)
-  #     User.update(@user, change_password_params)
-  #     @user.save
-  #     flash[:success] = "Password successfully changed!"
-  #     redirect_to user_path(@current_user)
-  #   else
-  #     flash[:danger] = "Your old password was incorrect. Please try again."
-  #     redirect_to user_path(@current_user)
-  #   end
-  # end
 
 end
