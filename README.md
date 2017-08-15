@@ -3,9 +3,7 @@ Application for watching videos and learning along the way.
 
 ## Overview
 
-The goal of this application is to provide video content with subtitles (subtitles still on their way) where subtitles are written at the Lexical reading level of the viewer.
-
-**Note** Right now, as far as video content, this app only displays the finest/dumbest short pet videos from my YouTube account.
+The goal of this application is to provide video content with subtitles where subtitles are written at the Lexical reading level of the viewer. In test phase.
 
 ## General Use Case
 
