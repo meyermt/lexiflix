@@ -11,9 +11,28 @@ The goal of this application is to provide video content with subtitles (subtitl
 
 A typical use case would go as follows: a parent or teacher signs up for an account and adds one to many student user accounts that they are "administrators" for. They set an initial lexical reading level for each student. After completion of sign up, students can then login and view subtitled content at their reading level (the ideal content is stuff like anime, cartoons, and anything else that would/could be viewed as close-captioned/subtitled). Parents/teachers have the ability to toggle a quiz element that will be displayed after students watch videos, in order to gauge if the reading level is appropriate (i.e., did they understand the content and can they be moved up a level). Parents/teachers can then view data for each student on an administrative dashboard.
 
+## Upcoming Enhancements
+
+* Session timeout
+* Welcome mail functionality
+* Popover view for definitions, rather than alert below video
+* Responsive video view (right now does not respond to smallest setting)
+* Correctly positioned subtitles in full screen mode
+* Move to lexiflix.com
+* Ability for site owners to be able to add questions and answers for videos throught the UI (currently only available through seeding)
+* Ability to upload JSON scripts
+* Content, subtitles, and quizzes in all lexical range (currently only test data for 300 and 800)
+* Payment options
+* Ability to search and filter video content
+* Add actual scripts in place of placeholder test scripts
+
 ## Current Known Issues
 
-* Main issues right now is just that student users are sort of stuck at login. The intent is that they are given a one time password that they then need to change on first login. The only part of this functionality present at the moment is the redirect to have them edit their information. The actual update is not working. Thus, they can't really browse, only admins and owners can.
+Some issues are already listed as enhancements, so please view that for full list.
+
+* Last subtitle in a video will play into perpetuity. Should go away after a few seconds
+* Partial fails, where one or more students can be added and one or more cannot, does not notify user (should be added to mailer).
+* In general, for users that are not at 300 or 800 in the test system, there will potentially be issues with viewing content or quizzes or both.
 
 ## User Stories
 
@@ -31,13 +50,13 @@ As a note, "admins" are considered parents or teachers. Owners are more like sys
 - [x] As an owner, I would like to edit video information.
 - [x] As an owner, I would like to delete videos.
 - [] As an admin, I would like to purchase the service with a credit card
-- [] As an admin or a user, I would like to view content at my reading level.
-- [] As an admin, I would like to know if my student(s) are understanding the content provided.
-- [] As an admin, I would like to view information about the content my students are watching that will inform my decision on their reading level.
+- [x] As an admin or a user, I would like to view content at my reading level.
+- [x] As an admin, I would like to know if my student(s) are understanding the content provided.
+- [x] As an admin, I would like to view information about the content my students are watching that will inform my decision on their reading level.
 - [x] As any user, I would like to view videos.
-- [] As a user, I would like to get to choose my password after an admin signs me up
+- [x] As a user, I would like to get to choose my password after an admin signs me up
 - [] As a user, I would like to rate the content I watch
 
 ** Nice to haves
-- [] As a user, I would like to click on a subtitled word to see its definition
+- [x] As a user, I would like to click on a subtitled word to see its definition
 - [] As a user, I would like to first be presented content that aligns to the genre of content I have chosen before.
