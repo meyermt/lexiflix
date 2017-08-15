@@ -1,4 +1,4 @@
-# Lexeo
+# lexiflix
 Application for watching videos and learning along the way.
 
 ## Overview
