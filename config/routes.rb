@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get '/words/:word' => 'words#show'
 
+  get '/help' => 'user_stories#index'
+
   resources :users
   resources :videos
 
