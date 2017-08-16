@@ -4,7 +4,7 @@ Application for watching videos and learning along the way. If you are giving th
 * In general, you should review the enhancements and known issues to understand what the app is and is not capable of right now.
 * To login as a site owner, someone who has full access across the site, please use the user called `admin`
 * To go through the site as a user who has students under them, login as the user called `someone`
-** To see canned results, go to `someone` user's student's progress for the user called `Grace Hopper`
+* To see canned results, go to `someone` user's student's progress for the user called `Grace Hopper`
 * The best subtitle experience will be with `cookiedude`, viewing Pokemon ep 25. Here there are some actual timed cuts in subtitles, giving you a better idea of how a finished product might look.
 * To test a student experience in the site, you should sign up a new user with students, and then view the Rails log to see the one time password generated for the student
 
