@@ -7,6 +7,7 @@ Application for watching videos and learning along the way. If you are giving th
 * To see canned results, go to `someone` user's student's progress for the user called `Grace Hopper`
 * The best subtitle experience will be with `cookiedude`, viewing Pokemon ep 25. Here there are some actual timed cuts in subtitles, giving you a better idea of how a finished product might look.
 * To test a student experience in the site, you should sign up a new user with students, and then view the Rails log to see the one time password generated for the student
+* Please do click the subtitles to see the definitions of words appear. This is one of the primary features of this application!
 
 ## Overview
 
