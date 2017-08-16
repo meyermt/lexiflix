@@ -3,7 +3,7 @@ User.delete_all
 
 adminguy = User.create username: 'admin', name: 'admin', otp: false, owner: true, email: 'admin@gmail.com', level: 800, admin: nil, password: 'password', password_confirmation: 'password'
 
-cookie_monster = User.create username: 'cookiedude', name: 'Cookie Monster', otp: false, owner: false, email: 'cookies@example.com', level: 800, admin: nil, password: 'cookies', password_confirmation: 'cookies'
+cookie_monster = User.create username: 'cookiedude', name: 'Cookie Monster', otp: false, owner: false, email: 'cookies@example.com', level: 300, admin: nil, password: 'cookies', password_confirmation: 'cookies'
 someone = User.create username: 'someone', name: 'Someone', otp: false, owner: false, email: 'someone@example.com', level: 800, admin: nil, password: 'something', password_confirmation: 'something'
 
 u = User.find_by(name: 'Someone').id
